@@ -1,0 +1,385 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>NUMBERS in graph format</title>
+		<link rel="stylesheet" type="text/css" href="http://getbootstrap.com/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="http://code.shutterstock.com/rickshaw/rickshaw.css">
+		<style>
+			article {
+				margin: 1em 0;
+				padding: 0 20px;
+				overflow: hidden;
+				width: 1170px;
+			}
+			caption {
+				font-weight: bold;
+				font-size: 16px;
+				text-align: left;
+				margin-bottom: 1em;
+			}
+			.table-mountain {
+				float: left;
+				width: 500px;
+				overflow: scroll;
+			}
+			tbody tr:nth-child(1):hover td,
+			tbody tr:nth-child(1):hover th {
+				background: #f0eee1;
+			}
+			tbody tr:nth-child(2):hover td,
+			tbody tr:nth-child(2):hover th {
+				background: #f3f0e1;
+			}
+			tbody tr:nth-child(3):hover td,
+			tbody tr:nth-child(3):hover th {
+				background: #ebebd3;
+			}
+			tbody tr:nth-child(4):hover td,
+			tbody tr:nth-child(4):hover th {
+				background: #efefcb;
+			}
+			tbody tr:nth-child(5):hover td,
+			tbody tr:nth-child(5):hover th {
+				background: #9fd2cd;
+			}
+			tbody tr:nth-child(6):hover td,
+			tbody tr:nth-child(6):hover th {
+				background: #2e3548;
+				color: #fff;
+			}
+			tbody tr:nth-child(7):hover td,
+			tbody tr:nth-child(7):hover th {
+				background: #2c3437;
+				color: #fff;
+			}
+			.chart-container {
+				padding-top: 2em;
+			}
+			#chart {
+				margin-right: 10px;
+				float: left;
+				width: 620px;
+				height: 300px;
+			}
+			.rickshaw_graph .detail .x_label {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<article>
+			<div id="chart"></div>
+			<div class="table-mountain">
+				<table class="table table-bordered">
+					<caption>My first test results table</caption>
+					<thead>
+						<tr>
+							<td></td>
+							<th scope="col">17/11/13</th>
+							<th scope="col">13/11/13</th>
+							<th scope="col">8/11/13</th>
+							<th scope="col">5/11/13</th>
+							<th scope="col">4/11/13</th>
+							<th scope="col">20/10/13</th>
+							<th scope="col">8/10/13</th>
+							<th scope="col">6/10/13</th>
+							<th scope="col">29/9/13</th>
+							<th scope="col">9/9/13</th>
+							<th scope="col">25/8/13</th>
+							<th scope="col">12/8/13</th>
+							<th scope="col">8/8/13</th>
+							<th scope="col">2/8/13</th>
+							<th scope="col">28/7/13</th>
+							<th scope="col">15/7/13</th>
+							<th scope="col">8/7/13</th>
+							<th scope="col">1/7/13</th>
+							<th scope="col">16/6/13</th>
+							<th scope="col">7/6/13</th>
+							<th scope="col">2/6/13</th>
+							<th scope="col">19/5/13</th>
+							<th scope="col">8/5/13</th>
+							<th scope="col">22/4/13</th>
+							<th scope="col">3/4/13</th>
+						</tr>
+					</thead>
+					<tbody id="health_data">
+						<tr>
+							<th scope="row" data-target="95">Weight (kg)</th>
+							<td>97.2</td>
+							<td></td>
+							<td>98</td>
+							<td></td>
+							<td>99.1</td>
+							<td>99.9</td>
+							<td>100.1</td>
+							<td>100.1</td>
+							<td>102.2</td>
+							<td>103.8</td>
+							<td>105.8</td>
+							<td>106.2</td>
+							<td>106.3</td>
+							<td></td>
+							<td>110.8</td>
+							<td>111.1</td>
+							<td>112.2</td>
+							<td>114.3</td>
+							<td>116.5</td>
+							<td>119</td>
+							<td>119.2</td>
+							<td>121.4</td>
+							<td>123</td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row" data-target="18">Body fat (%)</th>
+							<td>20.7</td>
+							<td></td>
+							<td>21</td>
+							<td></td>
+							<td>19.6</td>
+							<td>20.6</td>
+							<td>20.6</td>
+							<td>20.8</td>
+							<td>21.7</td>
+							<td>23.9</td>
+							<td>23.8</td>
+							<td>23.9</td>
+							<td>24.3</td>
+							<td></td>
+							<td>25</td>
+							<td>25.2</td>
+							<td>26.1</td>
+							<td>27.8</td>
+							<td>28.3</td>
+							<td>28.3</td>
+							<td>31.4</td>
+							<td>30.3</td>
+							<td>33.3</td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row" data-target="86">Waist (cm)</th>
+							<td></td>
+							<td>92</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>116</td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row" data-target="4.5">HbA1c (%)</th>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>5</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>5</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>6.9</td>
+							<td>7.1</td>
+						</tr>
+						<tr>
+							<th scope="row" data-target="4.5">Cholesterol (mmol)</th>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>4.6</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>3.3</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>4</td>
+						</tr>
+						<tr>
+							<th scope="row"  data-target="2">LDL Cholesterol (mmol)</th>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>2.9</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>1.7</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>2.3</td>
+						</tr>
+						<tr>
+							<th scope="row" data-target="2">HDL Cholesterol (mmol)</th>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>1.6</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>1.4</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>1.1</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</article>
+		<script src="http://d3js.org/d3.v3.min.js"></script>
+		<script src="https://raw.github.com/shutterstock/rickshaw/master/rickshaw.js"></script>
+		<script>
+			/* TODO
+				- fix parentNode bug
+				- sort out a y-axis?
+			*/
+			var dataRows = document.querySelectorAll('tbody > tr'),
+				dateCells = document.querySelectorAll('thead th'),
+				chart = document.getElementById('chart'),
+				colours = ["#f0eee1","#f3f0e1","#ebebd3","#efefcb","#9fd2cd","#2e3548","#2c3437"],
+				data = [],
+				dates = [],
+				targets = [],
+				graph;
+
+			Array.prototype.forEach.call(dateCells, function(e, i) {
+				dates.push(e.innerHTML);
+			});
+
+			dates.reverse();
+
+			Array.prototype.forEach.call(dataRows, function(e, i) {
+				var dataLabel = e.getElementsByTagName('th')[0],
+					dataCells = e.getElementsByTagName('td'),
+					targetRow = [],
+					dataObject = { 'name': dataLabel.innerHTML, 'data': [], 'color': colours[i], 'renderer': 'area'};
+				e.setAttribute('data-index', i);
+				for (var i = dataCells.length - 1; i >= 0; i--) {
+					var dataValue = parseFloat(dataCells[i].innerHTML, 10),
+						iterNum = dataCells.length - i;
+					if (dataValue) {
+						dataObject.data.push({ 'x': iterNum, 'y': dataValue });
+						targetRow.push({ 'x': iterNum, 'y': parseFloat(dataLabel.getAttribute('data-target'))})
+
+					} 
+				}
+				data.push(dataObject);
+				targets.push(targetRow);
+			});
+
+			document.getElementById('health_data').addEventListener('mouseover', function(e) {
+				var rowIndex = e.target.parentNode.getAttribute('data-index');
+				if (chart.getAttribute('current-index') != rowIndex) {
+					chart.innerHTML = "";
+					chart.setAttribute('current-index', rowIndex);
+					graph = new Rickshaw.Graph({
+						element: chart,
+						width: 600,
+						height: 300,
+						padding: {
+							top: 0.2
+						},
+						renderer: 'multi',
+						series: [
+							data[rowIndex],
+							{
+								'name': 'Target value',
+								'color': 'rgb(255, 0, 0)',
+								'renderer': 'line',
+								'data': targets[rowIndex]
+							}
+						]
+					});
+
+					graph.render();
+		
+					var detail = new Rickshaw.Graph.HoverDetail({
+						graph: graph,
+						formatter: function(series, x, y) {
+							var content = "<u>" + series.name + "</u><br> " + y + ' on '+ dates[x - 1];
+							return content;
+						}
+					});
+				}
+			}, false);
+		</script>
+	</body>
+</html>
