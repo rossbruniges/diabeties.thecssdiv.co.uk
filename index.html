@@ -62,6 +62,12 @@
 				width: 620px;
 				height: 300px;
 			}
+			#chart .rickshaw_graph {
+				display: none;
+			}
+			#chart .current {
+				display: block;
+			}
 			.rickshaw_graph .detail .x_label {
 				display: none;
 			}
@@ -308,7 +314,6 @@
 		<script src="https://raw.github.com/shutterstock/rickshaw/master/rickshaw.js"></script>
 		<script>
 			/* TODO
-				- fix parentNode bug
 				- sort out a y-axis?
 			*/
 			var dataRows = document.querySelectorAll('tbody > tr'),
@@ -317,8 +322,7 @@
 				colours = ["#f0eee1","#f3f0e1","#ebebd3","#efefcb","#9fd2cd","#2e3548","#2c3437"],
 				data = [],
 				dates = [],
-				targets = [],
-				graph;
+				targets = [];
 
 			Array.prototype.forEach.call(dateCells, function(e, i) {
 				dates.push(e.innerHTML);
@@ -346,12 +350,18 @@
 			});
 
 			document.getElementById('health_data').addEventListener('mouseover', function(e) {
-				var rowIndex = e.target.parentNode.getAttribute('data-index');
-				if (chart.getAttribute('current-index') != rowIndex) {
-					chart.innerHTML = "";
-					chart.setAttribute('current-index', rowIndex);
-					graph = new Rickshaw.Graph({
-						element: chart,
+				var rowIndex = e.target.parentNode.getAttribute('data-index'),
+					chartNode = document.getElementById('graph-' + rowIndex),
+					currentGraph = chart.getAttribute('data-current');
+				if (currentGraph) {
+					document.getElementById('graph-' + currentGraph).classList.remove('current');
+				}
+				if (!chartNode) {
+					var chartNode = document.createElement('div');
+					chartNode.setAttribute('id', 'graph-' + rowIndex);
+					chart.appendChild(chartNode);
+					var graph = new Rickshaw.Graph({
+						element: chartNode,
 						width: 600,
 						height: 300,
 						padding: {
@@ -379,6 +389,8 @@
 						}
 					});
 				}
+				chartNode.classList.add('current');
+				chart.setAttribute('data-current', rowIndex);
 			}, false);
 		</script>
 	</body>
