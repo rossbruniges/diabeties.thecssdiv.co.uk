@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>NUMBERS in graph format</title>
+		<title>Diabetic and weight loss measurements</title>
 		<link rel="stylesheet" type="text/css" href="http://getbootstrap.com/dist/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="http://code.shutterstock.com/rickshaw/rickshaw.css">
 		<style>
@@ -24,32 +24,46 @@
 				overflow: scroll;
 			}
 			tbody tr:nth-child(1):hover td,
-			tbody tr:nth-child(1):hover th {
+			tbody tr:nth-child(1):hover th,
+			tbody tr:nth-child(1).current td,
+			tbody tr:nth-child(1).current th {
 				background: #f0eee1;
 			}
 			tbody tr:nth-child(2):hover td,
-			tbody tr:nth-child(2):hover th {
+			tbody tr:nth-child(2):hover th,
+			tbody tr:nth-child(2).current td,
+			tbody tr:nth-child(2).current th {
 				background: #f3f0e1;
 			}
 			tbody tr:nth-child(3):hover td,
-			tbody tr:nth-child(3):hover th {
+			tbody tr:nth-child(3):hover th,
+			tbody tr:nth-child(3).current td,
+			tbody tr:nth-child(3).current th {
 				background: #ebebd3;
 			}
 			tbody tr:nth-child(4):hover td,
-			tbody tr:nth-child(4):hover th {
+			tbody tr:nth-child(4):hover th,
+			tbody tr:nth-child(4).current td,
+			tbody tr:nth-child(4).current th {
 				background: #efefcb;
 			}
 			tbody tr:nth-child(5):hover td,
-			tbody tr:nth-child(5):hover th {
+			tbody tr:nth-child(5):hover th,
+			tbody tr:nth-child(5).current td,
+			tbody tr:nth-child(5).current th {
 				background: #9fd2cd;
 			}
 			tbody tr:nth-child(6):hover td,
-			tbody tr:nth-child(6):hover th {
+			tbody tr:nth-child(6):hover th,
+			tbody tr:nth-child(6).current td,
+			tbody tr:nth-child(6).current th {
 				background: #2e3548;
 				color: #fff;
 			}
 			tbody tr:nth-child(7):hover td,
-			tbody tr:nth-child(7):hover th {
+			tbody tr:nth-child(7):hover th,
+			tbody tr:nth-child(7).current td,
+			tbody tr:nth-child(7).current th {
 				background: #2c3437;
 				color: #fff;
 			}
@@ -78,7 +92,7 @@
 			<div id="chart"></div>
 			<div class="table-mountain">
 				<table class="table table-bordered">
-					<caption>My first test results table</caption>
+					<caption>diabetic measurements</caption>
 					<thead>
 						<tr>
 							<td></td>
@@ -309,13 +323,12 @@
 					</tbody>
 				</table>
 			</div>
+			<p>As much as I love my fitbit I find their data visualisations a bit limited in what they do - I want to be able to see my progression through-out all measurements opposed to just monthly ones. So I did some hacking with <a href="http://code.shutterstock.com/rickshaw/">rickshaw.js</a> and a plain old HTML table and came up with this.</p>
+			<p>Right now it's pretty basic and shows my supreme design skills to the max but if you want to have a poke around with the code do a view source or <a href="https://github.com/rossbruniges/health_charts">fork the repo on github</a>.</p>
 		</article>
 		<script src="http://d3js.org/d3.v3.min.js"></script>
 		<script src="https://raw.github.com/shutterstock/rickshaw/master/rickshaw.js"></script>
 		<script>
-			/* TODO
-				- sort out a y-axis?
-			*/
 			var dataRows = document.querySelectorAll('tbody > tr'),
 				dateCells = document.querySelectorAll('thead th'),
 				chart = document.getElementById('chart'),
@@ -353,9 +366,12 @@
 				var rowIndex = e.target.parentNode.getAttribute('data-index'),
 					chartNode = document.getElementById('graph-' + rowIndex),
 					currentGraph = chart.getAttribute('data-current');
+				
 				if (currentGraph) {
 					document.getElementById('graph-' + currentGraph).classList.remove('current');
+					document.querySelectorAll('tr.current')[0].classList.remove('current');
 				}
+				e.target.parentNode.classList.add('current');
 				if (!chartNode) {
 					var chartNode = document.createElement('div');
 					chartNode.setAttribute('id', 'graph-' + rowIndex);
@@ -380,6 +396,13 @@
 					});
 
 					graph.render();
+
+					var yAxis = new Rickshaw.Graph.Axis.Y( {
+						graph: graph,
+						tickFormat: Rickshaw.Fixtures.Number.formatKMBT
+					} );
+
+					yAxis.render();
 		
 					var detail = new Rickshaw.Graph.HoverDetail({
 						graph: graph,
