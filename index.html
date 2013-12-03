@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Diabetic and weight loss measurements</title>
-		<link rel="stylesheet" type="text/css" href="http://getbootstrap.com/dist/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="http://code.shutterstock.com/rickshaw/rickshaw.css">
+		<link rel="stylesheet" type="text/css" href="libs/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="libs/rickshaw.min.css">
 		<style>
 			body {
 				padding: 0 20px;
@@ -362,8 +362,8 @@
 			<p>As much as I love my fitbit I find their data visualisations a bit limited in what they do - I want to be able to see my progression through-out all measurements opposed to just monthly ones. So I did some hacking with <a href="http://code.shutterstock.com/rickshaw/">rickshaw.js</a> and a plain old HTML table and came up with this.</p>
 			<p>Right now it's pretty basic and shows my supreme design skills to the max but if you want to have a poke around with the code do a view source or <a href="https://github.com/rossbruniges/health_charts">fork the repo on github</a>.</p>
 		</article>
-		<script src="http://d3js.org/d3.v3.min.js"></script>
-		<script src="https://raw.github.com/shutterstock/rickshaw/master/rickshaw.js"></script>
+		<script src="libs/d3.v3.min.js"></script>
+		<script src="libs/rickshaw.min.js"></script>
 		<script>
 			var dataRows = document.querySelectorAll('tbody > tr'),
 				dateCells = document.querySelectorAll('thead th'),
