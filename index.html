@@ -11,16 +11,11 @@
 			}
 			article {
 				margin: 1em 0;
-				width: 1170px;
 				position: relative;
 				overflow: hidden;
 			}
 			article section {
 				transition: transform 500ms ease 0s;
-			}
-			section.active {
-				-webkit-transform: translate3d(620px, 0, 0);
-				transform: translate3d(620px, 0, 0);
 			}
 			article p {
 				clear: both;
@@ -32,11 +27,11 @@
 				margin-bottom: 1em;
 			}
 			.table-mountain {
-				overflow: scroll;
+				overflow-x: scroll;
+				margin-bottom: 1em;
 			}
-			.active .table-mountain {
-				width: 500px;
-				float: left;
+			.table-mountain table {
+				margin-bottom: 0;
 			}
 			.no-js .table-mountain {
 				width: auto;
@@ -89,14 +84,7 @@
 				padding-top: 2em;
 			}
 			#chart {
-				float: left;
-				width: 620px;
-				height: 300px;
-				position: absolute;
-				top: 0;
-				left: 0;
-				-webkit-transform: translate3d(-100%, 0, 0);
-				transform: translate3d(-100%, 0, 0);
+				margin-bottom: 1em;
 			}
 			.no-js #chart {
 				display: none;
@@ -110,6 +98,26 @@
 			.rickshaw_graph .detail .x_label {
 				display: none;
 			}
+			@media (min-width: 799px) {
+				section.active {
+					-webkit-transform: translate3d(50%, 0, 0);
+					transform: translate3d(50%, 0, 0);
+				}
+				.active .table-mountain {
+					width: 49%;
+					margin-left: 1%;
+					float: left;
+				}
+				#chart {
+					float: left;
+					width: 50%;
+					position: absolute;
+					top: 0;
+					left: 0;
+					-webkit-transform: translate3d(-100%, 0, 0);
+					transform: translate3d(-100%, 0, 0);
+				}
+			} 
 		</style>
 	</head>
 	<body>
@@ -440,8 +448,8 @@
 					chart.appendChild(chartNode);
 					var graph = new Rickshaw.Graph({
 						element: chartNode,
-						width: 600,
-						height: 300,
+						width: chart.offsetWidth,
+						height: chart.offsetWidth * 0.5,
 						padding: {
 							top: 0.2
 						},
